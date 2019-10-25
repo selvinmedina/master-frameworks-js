@@ -250,7 +250,7 @@ textarea{
 }
 
 .radiobuttons input[type="radio"]{
-    margin-left: 40px;
+    margin-left: 15px;
 }
 
 .mid-form .btn{
@@ -396,7 +396,7 @@ textarea{
     }
 }
 
-@media (max-width: 433px){
+@media (max-width: 442px){
     #header{
         min-height: 130px;
         overflow: hidden;
@@ -413,7 +413,15 @@ textarea{
 
     #slider h1{
         font-size: 19px;
-        padding-top: 30px;
+        padding-top: 10px;
+    }
+
+    .btn-white{
+        width: 60px;
+        height: 35px;
+        font-size: 12px;
+        text-align: center;
+        padding: 5px;
     }
 
     .mid-form{
