@@ -1,1 +1,57 @@
-<h1 class="subheader">Formulario</h1>
+<app-slider [nombre]="'Formulario'" [size]="'small'">
+</app-slider>
+<div class="center">
+    <section id="content">
+        <h1 class="subheader">Formulario</h1>
+        <form class="mid-form" #userForm="ngForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="name">Nombre</label>
+                <input type="text" name="name" id="" pattern="[a-zA-Z]" required #nombre="ngModel"
+                    [(ngModel)]="user.nombre">
+                <small *ngIf="!nombre.valid && nombre.touched">
+                    El nombre no es valido
+                </small>
+            </div>
+
+            <div class="form-group">
+                <label for="apellido">Apellidos</label>
+                <input type="text" name="apellido" pattern="[a-zA-Z]" id="" required #apellidos="ngModel"
+                    [(ngModel)]="user.apellidos">
+                <small *ngIf="!apellidos.valid && apellidos.touched">
+                    Los apellidos no son validos
+                </small>
+            </div>
+
+            <div class="form-group">
+                <label for="bio">Biografia</label>
+                <textarea name="bio" id="" #bio="ngModel" required [(ngModel)]="user.bio"></textarea>
+                <small *ngIf="!bio.valid && bio.touched">
+                    La biografia es requerida
+                </small>
+            </div>
+
+            <div class="form-group radiobuttons">
+                <input type="radio" name="genero" #genero="ngModel" id="" required value="Hombre"
+                    [(ngModel)]="user.genero"> Hombre
+                <input type="radio" name="genero" #genero="ngModel" id="" value="Mujer" [(ngModel)]="user.genero"> Mujer
+                <input type="radio" name="genero" #genero="ngModel" id="" value="Otro" [(ngModel)]="user.genero"> Otro
+                <small *ngIf="!apellidos.valid && apellidos.touched">
+                    Es obligatorio seleccionar una opcion
+                </small>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <input type="submit" value="Enviar" class="btn btn-success" [disabled]="userForm.invalid">
+        </form>
+        <h2 class="subheader">
+            Eventos
+        </h2>
+        <button (click)="hasDadoClick()">Dale click</button>
+        <input type="text" [(ngModel)]="campo" (blur)="hasSalido()">
+        <input type="text" [(ngModel)]="campo" (keyup)="hasSalido()">
+        {{campo}}
+
+    </section>
+    <app-sidebar></app-sidebar>
+</div>

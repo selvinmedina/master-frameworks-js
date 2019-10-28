@@ -1,4 +1,6 @@
-<div id="slider" class="slider-big">
-    <h1>Bienvenido al curso de Angular de Selvin Medina</h1>
-    <a href="#" class="btn-white">Ir al blog</a>
+<div id="slider" class="slider-big" [ngClass]="{
+    'slider-small': size=='small'
+}">
+    <h1>{{nombre}}</h1>
+    <a href="#" class="btn-white" *ngIf="!size" [routerLink]="['/blog']">Ir al blog</a>
 </div>
