@@ -14,7 +14,7 @@ export class ArticlesComponent implements OnInit {
 
   constructor() {
     this.url = global.url;
-   }
+  }
 
   ngOnInit() {
   }

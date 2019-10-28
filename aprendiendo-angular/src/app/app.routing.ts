@@ -10,13 +10,15 @@ import { PeliculasComponent } from './peliculas/peliculas.component';
 import { PaginaComponent } from './components/pagina/pagina.component';
 import { ErrorComponent } from './components/error/error.component';
 import { ArticleComponent } from './components/article/article.component';
+import { SearchComponent } from './components/search/search.component';
 
 // Array de rutas
 const appRoutes: Routes = [
     { path: '', component: HomeComponent },
     { path: 'home', component: HomeComponent },
-    { path: 'blog/articulo/:id', component: ArticleComponent },
     { path: 'blog', component: BlogComponent },
+    { path: 'blog/articulo/:id', component: ArticleComponent },
+    { path: 'buscar/:search', component: SearchComponent },
     { path: 'form', component: FormularioComponent },
     { path: 'peliculas', component: PeliculasComponent },
     { path: 'pagina-de-pruebas', component: PaginaComponent },

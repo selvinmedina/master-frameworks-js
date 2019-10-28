@@ -1,5 +1,9 @@
 <div *ngIf="!articles">
-    <img src="../../../assets/images/cargando.gif" alt="">
+    <img src="../../../assets/images/cargando.gif" width="5%" alt="">
+</div>
+
+<div *ngIf="articles && articles.length == 0">
+    <h2>No hay articulos para mostrar, intentalo mas tarde.</h2>
 </div>
 
 <div id="articles">

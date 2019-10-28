@@ -30,4 +30,8 @@ export class ArticleService {
         return this._http.get(this.url + 'article/' + artilceId);
     }
 
+    search(searchString): Observable<any> {
+        return this._http.get(this.url + 'search/' + searchString);
+    }
+
 }
