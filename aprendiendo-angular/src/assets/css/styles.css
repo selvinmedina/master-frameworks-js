@@ -205,6 +205,7 @@ body {
    transition: 300ms all;
    border: none;
    cursor:pointer;
+   text-decoration: none;
 }
 
 .btn-success{
