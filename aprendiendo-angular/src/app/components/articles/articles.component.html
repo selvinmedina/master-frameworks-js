@@ -1,1 +1,20 @@
-<p>articles works!</p>
+<div *ngIf="!articles">
+    <img src="../../../assets/images/cargando.gif" alt="">
+</div>
+
+<div id="articles">
+    <article class="article-item" id="article-template" *ngFor="let article of articles">
+        <div class="image-wrap">
+            <img src="{{url + 'get-image/'+article.image}}" alt="{{article.title}}" *ngIf="article.image">
+            <img src="../../../assets/images/default.png" alt="{{article.title}}" *ngIf="!article.image">
+        </div>
+
+        <h2>{{article.title}}</h2>
+        <span class="date">
+            {{article.date | amLocale: 'es' | amTimeAgo}}
+        </span>
+        <a href="#">Leer mas</a>
+        <div class="clearfix"></div>
+    </article>
+    <!-- Añadir articulos via js -->
+</div>

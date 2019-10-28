@@ -6,7 +6,7 @@ var Schema = mongoose.Schema;
 var ArticleSchema = Schema({
     title: String,
     content: String,
-    date: { type: Date, defaul: Date.now },
+    date: { type: Date, default: Date.now() },
     image: String
 });
 

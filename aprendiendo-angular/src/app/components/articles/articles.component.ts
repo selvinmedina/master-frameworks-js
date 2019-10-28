@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Article } from 'src/app/models/article';
+import { global } from 'src/app/services/global';
 
 @Component({
   selector: 'app-articles',
@@ -7,7 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ArticlesComponent implements OnInit {
 
-  constructor() { }
+  @Input() articles: Article[];
+  public url: string;
+
+  constructor() {
+    this.url = global.url;
+   }
 
   ngOnInit() {
   }

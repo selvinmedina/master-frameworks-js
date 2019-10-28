@@ -6,7 +6,7 @@ export class Article {
         public image: string,
         public date: any
     ) {
-
+        this.date = new Date();
     }
 }
 
