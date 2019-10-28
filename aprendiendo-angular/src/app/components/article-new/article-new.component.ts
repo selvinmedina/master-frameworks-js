@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Article } from '../../models/article';
 
 @Component({
   selector: 'app-article-new',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ArticleNewComponent implements OnInit {
 
-  constructor() { }
+  public article: Article;
+
+  constructor() {
+    this.article = new Article('','','',null,null);
+   }
 
   ngOnInit() {
+  }
+
+  onSubmit(){
+    console.log(this.article);
   }
 
 }
