@@ -1,6 +1,6 @@
 <div class="center">
     <section id="content">
-        <h1 class="subheader">Crear Articulo</h1>
+        <h1 class="subheader">{{page_title}}</h1>
         <form class="mid-form" #articleForm="ngForm" (ngSubmit)="onSubmit()">
             <div class="form-group">
                 <label for="title">Titulo</label>
@@ -19,6 +19,11 @@
             </div>
 
             <div class="form-group">
+                <div class="image-thumb" *ngIf="isEdit">
+                    <div class="image-wrap">
+                        <img src="{{url + 'get-image/'+article.image}}" alt="{{article.title}}">
+                    </div>
+                </div>
                 <angular-file-uploader [config]="afuConfig" (ApiResponse)="imageUpload($event)">
                 </angular-file-uploader>
             </div>

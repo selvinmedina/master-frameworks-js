@@ -21,24 +21,36 @@ export class ArticleComponent implements OnInit {
     private _router: Router
   ) {
     this.url = global.url;
-   }
+  }
 
   ngOnInit() {
-    this._route.params.subscribe(params=>{
+    this._route.params.subscribe(params => {
       let id = params['id'];
       this._articleService.getArticle(id).subscribe(
-        response=>{
-          if(response.article){
+        response => {
+          if (response.article) {
             this.article = response.article;
-          } else{
+          } else {
             this._router.navigate(['/home']);
           }
         },
-        err=>{
+        err => {
           this._router.navigate(['/home']);
         }
       )
     });
+  }
+
+  delete(id) {
+    this._articleService.delete(id).subscribe(
+      response => {
+        this._router.navigate(['/blog']);
+      },
+      error => {
+        console.log(error);
+        this._router.navigate(['/blog']);
+      }
+    );
   }
 
 }

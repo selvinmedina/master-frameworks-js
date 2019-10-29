@@ -5,12 +5,12 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { global } from '../../services/global';
 
 @Component({
-  selector: 'app-article-new',
-  templateUrl: './article-new.component.html',
-  styleUrls: ['./article-new.component.css'],
+  selector: 'app-article-edit',
+  templateUrl: '../article-new/article-new.component.html',
+  styleUrls: ['./article-edit.component.css'],
   providers: [ArticleService]
 })
-export class ArticleNewComponent implements OnInit {
+export class ArticleEditComponent implements OnInit {
 
   public article: Article;
   public status: string;
@@ -35,7 +35,9 @@ export class ArticleNewComponent implements OnInit {
       afterUploadMsg_error: 'Upload Failed!'
     }
   };
+  public isEdit: boolean;
   public page_title: string;
+  public url: string;
 
   constructor(
     private _articleService: ArticleService,
@@ -43,34 +45,55 @@ export class ArticleNewComponent implements OnInit {
     private _router: Router
   ) {
     this.article = new Article('', '', '', null, null);
-    this.page_title = 'Crear articulo'
+    this.isEdit = true;
+    this.page_title = 'Editar articulo';
+    this.url = global.url;
   }
-
   ngOnInit() {
+    this.getArticule();
   }
 
   onSubmit() {
-    this._articleService.create(this.article).subscribe(
-      response => {
-        this.status = 'success'
-        if (response.status == 'success') {
-          this.status = 'success';
-          this.article = response.article;
-          this._router.navigate(['/blog']);
-        } else {
+    let id =
+      this._articleService.update(this.article._id, this.article).subscribe(
+        response => {
+          this.status = 'success'
+          if (response.status == 'success') {
+            this.status = 'success';
+            this.article = response.article;
+            this._router.navigate(['/blog/articulo', this.article._id]);
+          } else {
+            this.status = 'error';
+          }
+        },
+        err => {
+          console.log(err);
           this.status = 'error';
         }
-      },
-      err => {
-        console.log(err);
-        this.status = 'error';
-      }
-    )
+      )
   }
 
   imageUpload(data) {
     let imageData = JSON.parse(data.response);
     this.article.image = imageData.image;
+  }
+
+  getArticule() {
+    this._route.params.subscribe(params => {
+      let id = params['id'];
+      this._articleService.getArticle(id).subscribe(
+        response => {
+          if (response.article) {
+            this.article = response.article;
+          } else {
+            this._router.navigate(['/home']);
+          }
+        },
+        err => {
+          this._router.navigate(['/home']);
+        }
+      )
+    });
   }
 
 }
