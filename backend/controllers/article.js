@@ -46,7 +46,12 @@ var controller = {
             // Asignar valores
             article.title = params.title;
             article.content = params.content;
-            article.image = null;
+
+            if (params.image) {
+                article.image = params.image;
+            } else {
+                article.image = null;
+            }
 
             // Guardar el articulo
             article.save((err, articleStored) => {
@@ -209,8 +214,6 @@ var controller = {
 
     upload: (req, res) => {
         // Configurar el modulo de connect multiparty
-
-
         // Recoger el fichero de la peticion
         var fileName = 'Imagen no subida';
 
@@ -244,40 +247,47 @@ var controller = {
         } else {
             // Buscar el articulo y asignarle el nombre de la imagen, y borrar la antigua
             var articleId = req.params.id;
-            Article.findById(articleId, (err, article) => {
-                if (err || !article) {
-                    return res.status(404).send({
-                        status: 'error',
-                        message: 'No existe el articulo.'
-                    });
+            if (articleId) {
+                Article.findById(articleId, (err, article) => {
+                    if (err || !article) {
+                        return res.status(404).send({
+                            status: 'error',
+                            message: 'No existe el articulo.'
+                        });
 
-                }
-                // Eliminar
-                fs.stat('./upload/articles/' + article.image, (err, status) => {
-                    console.log(article.image);
-                    if (!err) {
-                        fs.unlink('./upload/articles/' + article.image, (err) => {
-                            console.log('Se ha eliminado el articulo antiguo');
+                    }
+                    // Eliminar
+                    fs.stat('./upload/articles/' + article.image, (err, status) => {
+                        console.log(article.image);
+                        if (!err) {
+                            fs.unlink('./upload/articles/' + article.image, (err) => {
+                                console.log('Se ha eliminado el articulo antiguo');
+                            });
+                        }
+                    });
+                });
+                // Si es todo valido
+                Article.findOneAndUpdate({ _id: articleId }, { image: fileName }, { new: true }, (err, articleUpdated) => {
+
+                    if (err || !articleUpdated) {
+                        return res.status(200).send({
+                            status: 'error',
+                            message: 'Error al guardar la imagen de articulo.'
                         });
                     }
-                });
-            });
-            // Si es todo valido
-            Article.findOneAndUpdate({ _id: articleId }, { image: fileName }, { new: true }, (err, articleUpdated) => {
 
-                if (err || !articleUpdated) {
+                    // Buscar el articulo, asignarle el nombre de la imagen y actualizarlo
                     return res.status(200).send({
-                        status: 'error',
-                        message: 'Error al guardar la imagen de articulo.'
+                        status: 'success',
+                        article: articleUpdated
                     });
-                }
-
-                // Buscar el articulo, asignarle el nombre de la imagen y actualizarlo
+                });
+            } else {
                 return res.status(200).send({
                     status: 'success',
-                    article: articleUpdated
+                    image: fileName
                 });
-            });
+            }
         }
     },
 

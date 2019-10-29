@@ -2,7 +2,7 @@
 </app-slider>
 <div class="center">
     <section id="content">
-        <article class="article-item article-detail">
+        <article class="article-item article-detail" *ngIf="article">
             <div class="image-wrap">
                 <img src="{{url + 'get-image/'+article.image}}" alt="Paisaje">
             </div>
