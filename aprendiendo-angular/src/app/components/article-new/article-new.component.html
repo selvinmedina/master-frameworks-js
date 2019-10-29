@@ -4,8 +4,9 @@
         <form class="mid-form" #articleForm="ngForm" (ngSubmit)="onSubmit()">
             <div class="form-group">
                 <label for="title">Titulo</label>
-                <input type="text" name="title" id="" pattern="[a-zA-Z]" required #title="ngModel"
+                <input type="text" name="title" id="" required #title="ngModel"
                     [(ngModel)]="article.title">
+                    {{article.title}}
                 <small *ngIf="!title.valid && title.touched">
                     El titulo no es valido
                 </small>
