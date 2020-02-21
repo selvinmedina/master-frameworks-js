@@ -5,32 +5,21 @@ import MiComponente from "./componets/MiComponente";
 import Peliculas from "./componets/Peliculas";
 import Header from "./componets/Header";
 import Slider from "./componets/Slider";
+import Sidebar from "./componets/Sidebar";
+import Footer from "./componets/Footer";
 
 function App() {
-  var nombre = 'Selvin Medina';
-  function holaMundo(nombre, edad) {
-
-    return (<div>
-      <h2>Hola soy {nombre}</h2>
-      <h3>Tengo {edad} años</h3>
-    </div>);
-  }
-
   return (
     <div className="App">
       <Header />
       <Slider />
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Hola mundo jaja edutad
-        </p>
-        {holaMundo(nombre, 19)}
-        <section className="componentes">
-          <MiComponente />
-          <Peliculas />
+      <div className="center">
+        <section id="content">
         </section>
-      </header>
+        <Sidebar />
+      </div>
+      <div class="clearfix"></div>
+      <Footer />
     </div>
   );
 }
