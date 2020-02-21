@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Pelicula from "./Pelicula";
 
 class Peliculas extends Component {
   state = {
@@ -20,32 +21,47 @@ class Peliculas extends Component {
     ],
     nombre: "Selvin Medina"
   };
+
+  cambiarTitilo = () => {
+    var { peliculas } = this.state;
+    var random = Math.floor(Math.random() * 3);
+    alert(random);
+    peliculas[random].titulo = "Batman begins";
+    this.setState({
+      peliculas
+    });
+  };
+
+  marcarFavorita = (pelicula)=>{
+      console.log('marcada favorita:' );
+      console.log(pelicula)
+  }
+
   render() {
     return (
       <div id="content" className="peliculas">
         <h2 className="subheader">
           Selección de las peliculas favoritas de: {this.state.nombre}
         </h2>
+        <p>
+          <button onClick={this.cambiarTitilo}>Cambiar título</button>
+        </p>
+        <p>
+          <strong>
+              La película favorita es:
+          </strong>
+          <span>
+              X
+          </span>
+        </p>
         <div id="articles" className="peliculas">
-            {this.state.peliculas.map((pelicula, i) => {
-            return (
-                <article className="article-item article-detail">
-                <div className="image-wrap">
-                    <img src={pelicula.image} alt={pelicula.titulo} />
-                </div>
-
-            <h1 className="subheader">{pelicula.titulo}</h1>
-                <span className="date">Hace 5 minutos</span>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum
-                    voluptatum expedita veniam nulla reiciendis debitis unde ducimus
-                    similique, impedit explicabo culpa. Voluptate numquam libero
-                    dolorum aspernatur vel, incidunt reiciendis laudantium!
-                </p>
-                <div className="clearfix"></div>
-                </article>
-            );
-            })}
+          {this.state.peliculas.map((pelicula, i) => {
+            return <Pelicula
+             key={i} 
+            pelicula={pelicula}
+            marcarFavorita = {this.marcarFavorita}
+            />;
+          })}
         </div>
       </div>
     );
