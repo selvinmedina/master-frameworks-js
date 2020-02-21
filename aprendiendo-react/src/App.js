@@ -1,23 +1,29 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import logo from './assets/images/logo.svg';
+import './assets/css/App.css';
+import  MiComponente  from "./componets/MiComponente";
 
 function App() {
+  var nombre = 'Selvin Medina';
+  function holaMundo(nombre, edad){
+    
+    return (<div>
+            <h2>Hola soy {nombre}</h2>
+            <h3>Tengo {edad} años</h3>
+           </div>);
+  }
+
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Hola mundo jaja edutad
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        {holaMundo(nombre, 19)}
+        <section className="componentes">
+        <MiComponente/>
+        </section>
       </header>
     </div>
   );
