@@ -6,7 +6,7 @@ class Sidebar extends Component {
             <aside id="sidebar">
                 <div id="nav-blog" className="sidebar-item">
                     <h3>Puedes hacer esto</h3>
-                    <a href="" class="btn btn-success">Crear articulo</a>
+                    <a href="" className="btn btn-success">Crear articulo</a>
                 </div>
 
                 <div id="search" className="sidebar-item">
@@ -14,7 +14,7 @@ class Sidebar extends Component {
                     <p>Encuentra el articulo que buscas</p>
                     <form action="">
                         <input type="text" name="search" id="" />
-                        <input type="submit" class="btn" value="Buscar" />
+                        <input type="submit" className="btn" value="Buscar" />
                     </form>
                 </div>
             </aside>
