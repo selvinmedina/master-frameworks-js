@@ -441,3 +441,7 @@ textarea{
       padding-top: 35px;
   }
 }
+
+.active{
+  border-bottom: 2px solid #21b3db;
+}

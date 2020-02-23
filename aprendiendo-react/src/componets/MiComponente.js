@@ -17,6 +17,7 @@ class MiComponente extends Component {
                         receta.ingredientes.map((ingrediente, i) => <li key={i}> {ingrediente}</li>)
                     }
                 </ul>
+                {this.props.saludo && <h2>{this.props?.saludo}</h2>}
             </React.Fragment >
         );
     }
