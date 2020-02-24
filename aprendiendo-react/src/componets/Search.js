@@ -3,21 +3,23 @@ import Slider from "./Slider";
 import Sidebar from "./Sidebar";
 import Articles from "./Articles";
 
-class Home extends Component {
+class Search extends Component {
     render() {
+        var busqueda = this.props.match.params.search || '';
+
         return (
             <React.Fragment>
-                <Slider tittle="Bienvenido al curso de React de Selvin Medina" buttonString={"Ir al blog"} />
+                <Slider tittle={'Busqueda: ' + busqueda} />
                 <div className="center">
                     <div id="content">
-                        <h1 className="subheader">Últimos articulos</h1>
-                        <Articles home={true} />
+                        {/* Listado de articulos que vendran del api */}
+                        <Articles search={busqueda} />
                     </div>
                 </div>
-                <Sidebar />
+                <Sidebar blog="true" />
             </React.Fragment>
         );
     }
 }
 
-export default Home;
+export default Search;

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Slider from "./Slider";
 import Sidebar from "./Sidebar";
 
 class Formulario extends Component {
@@ -16,7 +15,7 @@ class Formulario extends Component {
     recibirFormulario = (e) => {
         e.preventDefault();
 
-        var user = {
+        let user = {
             nombre: this.nombreRef.current.value,
             apellido: this.apellidoRef.current.value,
             biografia: this.biografiaRef.current.value,
@@ -24,6 +23,10 @@ class Formulario extends Component {
                 (this.generoMujerRef.current.checked) ? this.generoMujerRef.current.value :
                     (this.generoOtroRef.current.checked) ? this.generoOtroRef.current.value : '')
         }
+
+        this.setState({
+            user: user
+        });
 
         console.log('Formulaio enviado');
         console.log(this.nombreRef.current.value);
@@ -34,12 +37,44 @@ class Formulario extends Component {
     }
 
     render() {
+        const user = this.state.user;
         return (
             <React.Fragment>
                 <div className="center">
                     <div id="content">
                         <h1 className="subheader">Formulario</h1>
-                        <form className="mid-form" onSubmit={this.recibirFormulario}>
+                        {(user.nombre ||
+                            user.apellido ||
+                            user.biografia ||
+                            user.genero) &&
+
+                            <div id="user-data">
+                                {this.state.user.nombre && (
+                                    <p>
+                                        <strong>Nombre:</strong> <span>{user.nombre}</span>
+                                    </p>
+                                )}
+
+                                {user.apellido &&
+                                    <p>
+                                        <strong>Apellido: </strong> <span>{user.apellido}</span>
+                                    </p>
+                                }
+
+                                {user.biografia &&
+                                    <p>
+                                        <strong>Biografia: </strong> <span>{user.biografia}</span>
+                                    </p>
+                                }
+
+                                {user.genero &&
+                                    <p>
+                                        <strong>Genero: </strong> <span>{user.genero}</span>
+                                    </p>
+                                }
+                            </div>
+                        }
+                        <form className="mid-form" onSubmit={this.recibirFormulario} onChange={this.recibirFormulario}>
                             <div className="form-group">
                                 <label htmlFor="name">Nombre</label>
                                 <input type="text" name="name" id="" ref={this.nombreRef} />
@@ -68,7 +103,7 @@ class Formulario extends Component {
                     </div>
                 </div>
                 <Sidebar />
-            </React.Fragment>
+            </React.Fragment >
         );
     }
 }
