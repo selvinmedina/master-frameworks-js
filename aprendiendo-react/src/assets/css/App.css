@@ -142,6 +142,19 @@ body {
   color: white;
 }
 
+.btn.btn-danger{
+  background: rgb(250, 0, 0);
+  color: white;
+  margin-right: 15px;
+  float: left;
+}
+
+.btn.btn-warning{
+  background: rgb(250, 171, 0);
+  color: white;
+  float: left;
+}
+
 #slider.slider-small {
   height: 150px;
 }
@@ -445,3 +458,4 @@ textarea{
 .active{
   border-bottom: 2px solid #21b3db;
 }
+

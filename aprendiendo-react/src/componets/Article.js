@@ -57,6 +57,8 @@ class Article extends Component {
                             <p>
                                 {article.content}
                             </p>
+                            <a href="" className="btn btn-danger">Eliminar</a>
+                            <a href="" className="btn btn-warning">Editar</a>
                             <div className="clearfix"></div>
                         </article>
                     }
@@ -64,10 +66,10 @@ class Article extends Component {
                         <div id="article">
                             <h2 className="subheader">El articulo no existe</h2>
                             <p>Por favor intentelo de nuevo mas tarde</p>
-                            }
                         </div>
-
                     }
+
+
                     {this.state.status == null &&
                         <div id="article">
                             <h2 className="subheader">Cargando</h2>
