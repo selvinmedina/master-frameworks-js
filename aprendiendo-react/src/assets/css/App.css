@@ -234,7 +234,12 @@ body {
   margin-top: 10px;
 }
 
+input[type="submit"]{
+  margin-top: 15px;
+}
+
 input[type="text"],
+input[type="file"],
 textarea {
   width: 100%;
   min-height: 30px;

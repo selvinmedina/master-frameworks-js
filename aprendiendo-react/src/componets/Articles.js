@@ -56,8 +56,8 @@ class Articles extends Component {
 
         if (this.state.articles.length >= 1)
             return <div id="articles">
-                {this.state.articles.map((article, i) => {
-                    return <article className="article-item" id="article-template" key={i}>
+                {this.state.articles.map((article) => {
+                    return <article className="article-item" id="article-template" key={article._id}>
                         <div className="image-wrap">
                             {<img src={this.helper.obtenerImagen(article.image || null)} alt={article.title} />}
                         </div>

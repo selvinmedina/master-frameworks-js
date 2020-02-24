@@ -10,6 +10,7 @@ import Peliculas from "./componets/Peliculas"
 import Formulario from './componets/Formulario';
 import Search from './componets/Search';
 import Article from './componets/Article';
+import CreateArticle from './componets/CreateArticle';
 
 class Router extends Component {
     render() {
@@ -30,6 +31,8 @@ class Router extends Component {
                     <Route exact path="/redirect/:search" render={(props) => <Redirect to={'/search/' + props.match.params.search}></Redirect>} />
 
                     <Route exact path="/blog/articulo/:id" component={Article} />
+
+                    <Route exact path="/blog/crear" component={CreateArticle} />
 
                     <Route exact path="/pruebas/:id/:nombre/:apellido?" render={(props) =>
                         (<h1>

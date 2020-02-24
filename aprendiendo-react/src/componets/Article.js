@@ -5,6 +5,7 @@ import Moment from "react-moment";
 import 'moment/locale/es';
 import Sidebar from "./Sidebar";
 import Helpers from "./Helpers";
+import { Link } from "react-router-dom";
 
 class Article extends Component {
 
@@ -57,8 +58,8 @@ class Article extends Component {
                             <p>
                                 {article.content}
                             </p>
-                            <a href="" className="btn btn-danger">Eliminar</a>
-                            <a href="" className="btn btn-warning">Editar</a>
+                            <Link className="btn btn-danger" to="/blog">Eliminar</Link>
+                            <Link className="btn btn-warning" to="/blog">Editar</Link>
                             <div className="clearfix"></div>
                         </article>
                     }
