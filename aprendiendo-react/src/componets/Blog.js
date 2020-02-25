@@ -14,7 +14,7 @@ class Blog extends Component {
                         <Articles />
                     </div>
                 </div>
-                <Sidebar blog="true" />
+                <Sidebar />
             </React.Fragment>
         );
     }

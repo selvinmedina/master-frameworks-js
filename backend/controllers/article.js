@@ -213,6 +213,7 @@ var controller = {
     },
 
     upload: (req, res) => {
+    	console.log('subiendo...');
         // Configurar el modulo de connect multiparty
         // Recoger el fichero de la peticion
         var fileName = 'Imagen no subida';
@@ -223,7 +224,7 @@ var controller = {
                 message: fileName
             });
         }
-
+        console.log(req.files.file0);
         // Conseguir nombre y la extension del archivo
         var filePath = req.files.file0.path;
         var fileSplit = filePath.split('\\');
