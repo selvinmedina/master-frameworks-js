@@ -8,7 +8,6 @@ var path = require('path');
 var controller = {
     datosCurso: (req, res) => {
         var hola = req.body.hola;
-        console.log('hola mundo');
         return res.status(200).send({
             curso: 'Master en framewors JS',
             autor: 'Selvin Medina',
@@ -26,8 +25,7 @@ var controller = {
     save: (req, res) => {
         // Recoger por post
         var params = req.body;
-        console.log(params);
-
+        
         // Validar datos
         try {
             var validateTitle = !validator.isEmpty(params.title);
@@ -213,7 +211,6 @@ var controller = {
     },
 
     upload: (req, res) => {
-    	console.log('subiendo...');
         // Configurar el modulo de connect multiparty
         // Recoger el fichero de la peticion
         var fileName = 'Imagen no subida';
@@ -224,7 +221,6 @@ var controller = {
                 message: fileName
             });
         }
-        console.log(req.files.file0);
         // Conseguir nombre y la extension del archivo
         var filePath = req.files.file0.path;
         var fileSplit = filePath.split('\\');
@@ -259,10 +255,8 @@ var controller = {
                     }
                     // Eliminar
                     fs.stat('./upload/articles/' + article.image, (err, status) => {
-                        console.log(article.image);
                         if (!err) {
                             fs.unlink('./upload/articles/' + article.image, (err) => {
-                                console.log('Se ha eliminado el articulo antiguo');
                             });
                         }
                     });
