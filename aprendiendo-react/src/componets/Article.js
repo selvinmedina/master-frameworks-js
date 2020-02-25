@@ -5,7 +5,8 @@ import Moment from "react-moment";
 import 'moment/locale/es';
 import Sidebar from "./Sidebar";
 import Helpers from "./Helpers";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
+import swal from 'sweetalert';
 
 class Article extends Component {
 
@@ -13,7 +14,8 @@ class Article extends Component {
     helper = Helpers;
     state = {
         article: null,
-        status: null
+        status: null,
+        eliminado: false
     }
 
     componentWillMount = () => this.getArticle();
@@ -40,7 +42,40 @@ class Article extends Component {
         });
     }
 
+    deleteArticle = (id, title) => {
+        swal("¿Esta seguro que desea eliminar este articulo?", {
+            dangerMode: true,
+            buttons: true,
+        }).then(res => {
+            if (res)
+                axios.delete(this.url + 'article/' + id).then(
+                    res => {
+                        if (res.data.article) {
+                            this.setState(
+                                {
+                                    article: res.data.article,
+                                    status: 'success',
+                                    eliminado: true
+                                }
+                            );
+                            swal('Exito',
+                                'Se ha eliminado correctamente',
+                                'success');
+                        }
+                    }
+                ).catch(err => {
+                    console.log(err);
+                    swal('Error',
+                        'Lo siento, hubo un error al intentar eliminar el articulo, contacte al administrador',
+                        'error');
+                });
+
+        });
+    }
+
     render() {
+        if (this.state.eliminado)
+            return <Redirect to="/blog"></Redirect>
         var article = this.state.article;
         return (
             <div className="center">
@@ -58,8 +93,14 @@ class Article extends Component {
                             <p>
                                 {article.content}
                             </p>
-                            <Link className="btn btn-danger" to="/blog">Eliminar</Link>
-                            <Link className="btn btn-warning" to="/blog">Editar</Link>
+                            <button
+                                onClick={
+                                    () => {
+                                        this.deleteArticle(article._id, article.title)
+                                    }
+                                }
+                                className="btn btn-danger">Eliminar</button>
+                            <Link className="btn btn-warning" to={"/blog/articulo/editar/" + article._id}>Editar</Link>
                             <div className="clearfix"></div>
                         </article>
                     }
