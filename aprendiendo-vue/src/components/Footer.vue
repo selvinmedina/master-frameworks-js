@@ -1,0 +1,12 @@
+<template>
+  <footer id="footer">
+    <div class="center">
+      <p>&copy; Master en Frameworks de JavaScript</p>
+    </div>
+  </footer>
+</template>
+<script>
+export default {
+  name: "Footer"
+};
+</script>
