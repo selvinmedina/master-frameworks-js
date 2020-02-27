@@ -10,10 +10,21 @@ import Formulario from './components/Formulario.vue'
 import Pagina from './components/Pagina.vue'
 import Error from './components/Error.vue'
 import Peliculas from './components/Peliculas.vue'
+import VueMoment from 'vue-moment';
+import moment from 'moment';
+import 'moment/locale/es';
 
 Vue.config.productionTip = false
 Vue.use(VueRouter);
 Vue.use(Vuelidate);
+//const moment = require('moment');
+//require('moment/locale/es');
+Vue.use(VueMoment, {
+  moment
+});
+// Vue.use(require('vue-moment'), {
+//   moment
+// });
 
 const routes = [
   { path: '/home', component: LastArticles },

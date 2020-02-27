@@ -4,19 +4,17 @@
     <div class="center">
       <section id="content">
         <h2 class="subheader">Ultimos articulos</h2>
-        <div id="articles">
-          <article class="article-item" id="article-template">
-            <div class="image-wrap">
-              <img src="assets/images/2.jpg" alt="Paisaje" />
-            </div>
-
-            <h2>Articulo de prueba</h2>
-            <span class="date">Hace 5 minutos</span>
-            <a href="#">Leer mas</a>
-            <div class="clearfix"></div>
-          </article>
-          <!-- Añadir articulos via js -->
+        <div v-if="!articles">Cargando...</div>
+        <div id="articles" v-if="articles.length > 0">
+          <Article
+            class="article-item"
+            id="article-template"
+            v-for="(article) of articles"
+            :article="article"
+            :key="article._id"
+          />
         </div>
+        <div v-else>No hay Articulos para mostrar</div>
       </section>
       <sidebar />
     </div>
@@ -26,11 +24,32 @@
 <script>
 import Slider from "./Slider.vue";
 import Sidebar from "./Sidebar.vue";
+import axios from "axios";
+import Global from "../Global";
+import Article from "./Article.vue";
+
 export default {
   name: "LastArticles",
   components: {
     Slider,
-    Sidebar
+    Sidebar,
+    Article
+  },
+  data() {
+    return {
+      articles: [],
+      url: Global.url
+    };
+  },
+  methods: {
+    getArticles() {
+      axios.get(this.url + "articles/last").then(res => {
+        if (res.data.status == "success") this.articles = res.data.articles;
+      });
+    }
+  },
+  mounted() {
+    this.getArticles();
   }
 };
 </script>
