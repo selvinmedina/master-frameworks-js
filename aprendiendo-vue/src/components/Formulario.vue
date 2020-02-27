@@ -7,22 +7,22 @@
           <div class="form-group">
             <label for="name">Nombre</label>
             <input type="text" name="name" v-model="user.nombre" id />
-            <div v-if="!$v.user.nombre.required">Este campo es requerido</div>
-            <div v-if="!$v.user.nombre.minLength">Minimo 2 letras</div>
+            <div v-if="submitted && (!$v.user.nombre.required)">Este campo es requerido</div>
+            <div v-if="submitted && (!$v.user.nombre.minLength)">Minimo 2 letras</div>
           </div>
 
           <div class="form-group">
             <label for="apellido">Apellidos</label>
             <input type="text" v-model="user.apellido" name="apellido" id />
-            <div v-if="!$v.user.apellido.required">Este campo es requerido</div>
-            <div v-if="!$v.user.apellido.minLength">Minimo 2 letras</div>
+            <div v-if="submitted && (!$v.user.apellido.required)">Este campo es requerido</div>
+            <div v-if="submitted && (!$v.user.apellido.minLength)">Minimo 2 letras</div>
           </div>
 
           <div class="form-group">
             <label for="bio">Biografia</label>
             <textarea name="bio" v-model="user.biografia"></textarea>
-            <div v-if="!$v.user.biografia.required">Este campo es requerido</div>
-            <div v-if="!$v.user.biografia.minLength">Minimo 10 letras</div>
+            <div v-if="submitted && (!$v.user.biografia.required)">Este campo es requerido</div>
+            <div v-if="submitted && (!$v.user.biografia.minLength)">Minimo 10 letras</div>
           </div>
 
           <div class="form-group radiobuttons">
@@ -55,11 +55,19 @@ export default {
         apellido: "",
         biografia: "",
         genero: ""
-      }
+      },
+      submitted: false
     };
   },
   methods: {
-    mostrarUsuario() {}
+    mostrarUsuario() {
+      this.submitted = true;
+
+      this.$v.$touch();
+      if (this.$v.$invalid) return false;
+
+      alert("Validacion pasada");
+    }
   },
   validations: {
     user: {
