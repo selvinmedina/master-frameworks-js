@@ -115,8 +115,10 @@ body {
     background: -ms-radial-gradient(center, ellipse cover, rgba(119,194,81,1) 0%, rgba(8,145,42,1) 100%);
     background: radial-gradient(ellipse at center, rgba(119,194,81,1) 0%, rgba(8,145,42,1) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#77c251', endColorstr='#08912a', GradientType=1 );
+}
 
-
+.slider-small{
+    height: 100px;
 }
 
 .yeargreen{

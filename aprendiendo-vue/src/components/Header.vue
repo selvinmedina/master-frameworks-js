@@ -27,7 +27,7 @@
               id: 'Soy el parametro'
             }}"
               active-class="active"
-            >Pagina 1</router-link>
+            >Pruebas</router-link>
           </li>
           <li>
             <router-link to="/peliculas" active-class="active">Peliculas</router-link>

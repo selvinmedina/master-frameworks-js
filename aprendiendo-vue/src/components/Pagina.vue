@@ -1,6 +1,6 @@
 <template>
   <div class="general">
-    <slider />
+    <slider texto="Página de pruebas" :showBtn="true" />
     <div class="center">
       <section id="content">
         <h2 class="subheader">Pagina de pruebas</h2>

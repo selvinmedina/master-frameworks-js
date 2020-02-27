@@ -2,8 +2,16 @@
   <div class="center">
     <section id="content">
       <h2 class="subheader">Peliculas</h2>
+      <div class="favorita" v-if="favorita">
+        <h2>Favorita: {{favorita.title}}</h2>
+      </div>
       <div id="articles">
-        <pelicula v-for="(pelicula, key) in peliculas" :key="key" :pelicula="pelicula" />
+        <pelicula
+          @favorita="haLlegadoLaFavorita"
+          v-for="(pelicula, key) in peliculasMayusculas"
+          :key="key"
+          :pelicula="pelicula"
+        />
       </div>
     </section>
     <sidebar />
@@ -40,8 +48,23 @@ export default {
           image:
             "https://vignette.wikia.nocookie.net/eldragonverde/images/d/d4/LegendsMiddleEarth.jpg/revision/latest?cb=20141124111925&path-prefix=es"
         }
-      ]
+      ],
+      favorita: null
     };
+  },
+  methods: {
+    haLlegadoLaFavorita(favorita) {
+      this.favorita = favorita;
+    }
+  },
+  computed: {
+    peliculasMayusculas() {
+      var peliculasMod = this.peliculas;
+      for (let i = 0; i < this.peliculas.length; i++) {
+        peliculasMod[i].title = peliculasMod[i].title.toUpperCase();
+      }
+      return peliculasMod;
+    }
   }
 };
 </script>

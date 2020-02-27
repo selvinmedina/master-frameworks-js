@@ -12,6 +12,7 @@
             yearred: pelicula.year <2016
         }"
     >{{pelicula.year}}</span>
+    <button @click="marcarFavorita(pelicula)">Marcar como Favorita</button>
     <div class="clearfix"></div>
   </article>
 </template>
@@ -19,8 +20,11 @@
 export default {
   name: "Pelicula",
   props: ["pelicula"],
-  mounted() {
-    console.log(this.pelicula);
+  methods: {
+    marcarFavorita(pelicula) {
+      console.log(pelicula.title);
+      this.$emit("favorita", pelicula);
+    }
   }
 };
 </script>

@@ -1,11 +1,14 @@
 <template>
-  <div id="slider" class="slider-big">
-    <h1>Bienvenido al curso de Vue de Selvin Medina</h1>
-    <a href="#" class="btn-white">Ir al blog</a>
+  <div id="slider" :class="{
+    'slider-small': !showBtn
+  }">
+    <h1>{{texto}}</h1>
+    <router-link to="/blog" v-if="showBtn" class="btn-white">Ir al blog</router-link>
   </div>
 </template>
 <script>
 export default {
-  name: "Slider"
+  name: "Slider",
+  props: ["texto", "showBtn"]
 };
 </script>

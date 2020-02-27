@@ -1,6 +1,6 @@
 <template>
   <div class="general">
-    <slider />
+    <slider texto="Bienvenido al curso de Vue de Selvin Medina" :showBtn="true" />
     <div class="center">
       <section id="content">
         <h2 class="subheader">Ultimos articulos</h2>
