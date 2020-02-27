@@ -5,6 +5,8 @@
       <div class="favorita" v-if="favorita">
         <h2>Favorita: {{favorita.title}}</h2>
       </div>
+      <p class v-if="misDatos" v-html="misDatos"></p>
+      {{nombre | concatenaYear('Este es el mejor anio') | mayusculas}}
       <div id="articles">
         <pelicula
           @favorita="haLlegadoLaFavorita"
@@ -49,7 +51,11 @@ export default {
             "https://vignette.wikia.nocookie.net/eldragonverde/images/d/d4/LegendsMiddleEarth.jpg/revision/latest?cb=20141124111925&path-prefix=es"
         }
       ],
-      favorita: null
+      favorita: null,
+      nombre: "Selvin Rolando",
+      apellido: "Medina Baca",
+      edad: 17,
+      sexo: "M"
     };
   },
   methods: {
@@ -60,10 +66,28 @@ export default {
   computed: {
     peliculasMayusculas() {
       var peliculasMod = this.peliculas;
-      for (let i = 0; i < this.peliculas.length; i++) {
+      for (let i = 0; i < this.peliculas.length; i++)
         peliculasMod[i].title = peliculasMod[i].title.toUpperCase();
-      }
+
       return peliculasMod;
+    },
+    misDatos() {
+      return `Nombre: ${this.nombre.split(" ")[0]} <br/>
+      Apellido: ${this.apellido.split(" ")[0]} <br/>
+      Mayor de edad: ${this.edad >= 18 ? "Si" : "No"} <br/>
+      Sexo: ${
+        this.sexo == "M" ? "Masculino" : this.sexo == "F" ? "Femenino" : "Otro"
+      }
+      `;
+    }
+  },
+  filters: {
+    mayusculas(value) {
+      return value.toUpperCase();
+    },
+    concatenaYear(value, mensaje) {
+      let fetcha = new Date();
+      return value + " " + fetcha.getFullYear() + " " + mensaje;
     }
   }
 };
