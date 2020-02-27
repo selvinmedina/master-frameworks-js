@@ -1,14 +1,27 @@
 <template>
-  <section id="content">
-    <h2 class="subheader">Pagina de pruebas</h2>
-    <h3>{{id_desde_url}}</h3>
-    <h4>{{nombre}}</h4>
-    <button @click="actualizarNombre()">Actualizar nombre</button>
-  </section>
+  <div class="general">
+    <slider />
+    <div class="center">
+      <section id="content">
+        <h2 class="subheader">Pagina de pruebas</h2>
+        <h3>{{id_desde_url}}</h3>
+        <h4>{{nombre}}</h4>
+        <button @click="actualizarNombre()">Actualizar nombre</button>
+        <button @click="redirigirAlBlog()">Redirigir</button>
+      </section>
+      <sidebar />
+    </div>
+  </div>
 </template>
 <script>
+import Slider from "./Slider.vue";
+import Sidebar from "./Sidebar.vue";
 export default {
   name: "Pagina",
+  components: {
+    Slider,
+    Sidebar
+  },
   created() {
     console.log("Created");
   },
@@ -31,6 +44,11 @@ export default {
   methods: {
     actualizarNombre() {
       this.nombre = "Selvin Medina";
+    },
+    redirigirAlBlog() {
+      console.log(this.$router);
+
+      this.$router.push("/blog");
     }
   }
 };
